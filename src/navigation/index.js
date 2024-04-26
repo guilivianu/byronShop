@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "../paginas/home";
+import Login from "../paginas/Login";
 
 const Navigation = () => {
-  return <Home />;
+  return <Login />;
 };
 
 export default Navigation;
