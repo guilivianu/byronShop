@@ -8,12 +8,24 @@ export async function buscaProdutos() {
     console.log(error);
     return [];
   }
-  // try {
-  //   const resultado = await api.get(`/produtos`);
-  //   console.log(resultado.json());
-  //   return resultado.data[0];
-  // } catch (error) {
-  //   console.log(error);
-  //   return {};
-  // }
+}
+
+export async function criarConta(nome, email, cpf, senha) {
+  try {
+    const response = await api.post(
+      "http://capacitacao.byronsolutions.com:3000/usuarios",
+      {
+        nome,
+        email,
+        senha,
+        cpf,
+      }
+    );
+    console.log(response.data);
+    return "sucesso";
+  } catch (error) {
+    // console.error(error);
+    // console.error(error.response.data);
+    return error;
+  }
 }

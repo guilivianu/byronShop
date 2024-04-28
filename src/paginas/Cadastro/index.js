@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -6,9 +6,26 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
+  Alert,
 } from "react-native";
+import { criarConta } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Cadastro() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [senha, setSenha] = useState("");
+
+  async function criar() {
+    const resultado = await criarConta(nome, email, cpf, senha);
+
+    if (resultado === "sucesso") {
+      Alert.alert("Conta criada!");
+    } else {
+      Alert.alert("Erro", "Houve um problema ao cadastrar o usuário.");
+    }
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.box}>
@@ -18,24 +35,35 @@ export default function Cadastro() {
             placeholder="Nome"
             autoCapitalize="none"
             style={styles.input}
+            value={nome}
+            onChangeText={setNome}
           />
           <TextInput
             placeholder="E-mail"
             autoCapitalize="none"
             style={styles.input}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
           />
           <TextInput
             placeholder="CPF"
             autoCapitalize="none"
             style={styles.input}
+            value={cpf}
+            onChangeText={setCpf}
+            keyboardType="numeric"
           />
           <TextInput
             placeholder="Senha"
             autoCapitalize="none"
             style={styles.input}
+            value={senha}
+            onChangeText={setSenha}
+            secureTextEntry
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={criar}>
           <Text style={styles.buttonText}>Criar</Text>
         </TouchableOpacity>
       </View>
