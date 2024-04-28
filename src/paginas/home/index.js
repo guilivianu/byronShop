@@ -3,7 +3,13 @@ import { StyleSheet, Image, TextInput, ScrollView, View } from "react-native";
 
 import Categorias from "./Categorias/Carousel";
 
+import { buscaProdutos } from "../../servicos/requisicoes/produtos";
+
 export default function Home() {
+  console.log("ola");
+
+  console.log("ola");
+
   return (
     <ScrollView style={{ height: "100%" }}>
       <Image

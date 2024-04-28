@@ -8,14 +8,24 @@ import {
   View,
 } from "react-native";
 
-export default function Login() {
+export default function Cadastro() {
   return (
     <SafeAreaView>
       <View style={styles.box}>
-        <Text style={styles.title}>Runner Shop</Text>
+        <Text style={styles.title}>Cadastro</Text>
         <View style={styles.inputBox}>
           <TextInput
+            placeholder="Nome"
+            autoCapitalize="none"
+            style={styles.input}
+          />
+          <TextInput
             placeholder="E-mail"
+            autoCapitalize="none"
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="CPF"
             autoCapitalize="none"
             style={styles.input}
           />
@@ -26,14 +36,7 @@ export default function Login() {
           />
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.footerBox}>
-        <Text style={styles.footerText}>Não tem uma conta?</Text>
-        <TouchableOpacity>
-          <Text style={styles.footerButton}>Cadastre-se</Text>
+          <Text style={styles.buttonText}>Criar</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -42,7 +45,7 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   box: {
-    height: "90%",
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
     gap: 51,
@@ -76,24 +79,5 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     alignSelf: "center",
     color: "white",
-  },
-  footerBox: {
-    borderTopWidth: 1.5,
-    borderTopColor: "#3E3E3E",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 2,
-    height: "10%",
-  },
-  footerText: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#3E3E3E",
-  },
-  footerButton: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#000000",
   },
 });

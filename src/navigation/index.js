@@ -1,8 +1,8 @@
 import React from "react";
-import Login from "../paginas/Login";
+import Carrinho from "../paginas/Carrinho";
 
 const Navigation = () => {
-  return <Login />;
+  return <Carrinho />;
 };
 
 export default Navigation;
