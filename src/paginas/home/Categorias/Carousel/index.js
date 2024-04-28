@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useProdutos } from "../../../../servicos/requisicoes/useProdutos";
 import Carousel from "./Carousel";
 
 const Categorias = () => {

@@ -1,11 +1,16 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function CardProduto({ nome, preco, foto }) {
+export default function CardProduto({ nome, preco, fotos }) {
   return (
     <View style={styles.productBox}>
       <View style={styles.boxImg}>
-        <Image source={foto} style={styles.image} />
+        <Image
+          source={{
+            uri: `http://capacitacao.byronsolutions.com:3000${fotos[0].url}`,
+          }}
+          style={styles.image}
+        />
         <TouchableOpacity>
           <Image
             source={require("../../../../../../assets/botaoAdd.png")}
@@ -15,7 +20,7 @@ export default function CardProduto({ nome, preco, foto }) {
       </View>
       <View>
         <Text style={styles.info}>{nome}</Text>
-        <Text style={styles.info}>{preco}</Text>
+        <Text style={styles.info}>R${preco}</Text>
       </View>
     </View>
   );
@@ -26,6 +31,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
     gap: 10,
+    width: 110,
   },
   boxImg: {
     backgroundColor: "#F8F8F8",
@@ -34,6 +40,7 @@ const styles = StyleSheet.create({
   image: {
     width: 110,
     height: 110,
+    borderRadius: 8,
   },
   botaoAdd: {
     backgroundColor: "#000000",
