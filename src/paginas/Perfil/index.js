@@ -1,31 +1,47 @@
 import React from "react";
 import {
-  TouchableOpacity,
   Text,
   SafeAreaView,
   StyleSheet,
   View,
-  Button,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 
 export default function Perfil({ navigation }) {
   return (
     <SafeAreaView style={styles.box}>
-      <Text style={styles.title}>Tela de perfil</Text>
+      {/* Img Perfil */}
       <View style={{ gap: 16 }}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <Image
+          source={require("../../assets/foto-perfil.jpg")}
+          style={styles.image}
+        />
+        <Text style={styles.name}>Olá, André</Text>
+      </View>
+
+      {/* Infos */}
+      <View style={{ gap: 33, marginHorizontal: 64 }}>
+        {/* Nome */}
+        <View style={styles.infoBox}>
+          <Text style={styles.title}>Nome</Text>
+          <Text style={styles.info}>André Camargo</Text>
+        </View>
+
+        {/* Email */}
+        <View style={styles.infoBox}>
+          <Text style={styles.title}>Email</Text>
+          <Text style={styles.info}>camargo_andre@gmail.com</Text>
+        </View>
+
+        {/* Senha */}
+        <View style={styles.infoBox}>
+          <Text style={styles.title}>Senha</Text>
+          <Text style={styles.info}>**************</Text>
+        </View>
+
         <TouchableOpacity style={styles.button}>
-          <Text
-            style={styles.buttonText}
-            onPress={() => navigation.navigate("Cadastro")}
-          >
-            Cadastro
-          </Text>
+          <Text style={styles.buttonText}>Adicionar produtos</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -35,24 +51,49 @@ export default function Perfil({ navigation }) {
 const styles = StyleSheet.create({
   box: {
     height: "100%",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    justifyContent: "center",
+    gap: 51,
     backgroundColor: "#FFF",
   },
-  title: {
-    fontSize: 80,
-    fontWeight: "bold",
+  image: {
+    width: 110,
+    height: 110,
     alignSelf: "center",
   },
+  name: {
+    fontSize: 20,
+    fontWeight: "500",
+    color: "#3E3E3E",
+    alignSelf: "center",
+  },
+  infoBox: {
+    gap: 23,
+    borderBottomWidth: 1,
+    borderBottomColor: "#3E3E3E",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "500",
+    color: "#3E3E3E",
+  },
+  info: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#3E3E3E",
+    opacity: 0.65,
+    marginBottom: 4,
+  },
   button: {
-    backgroundColor: "#80669d",
-    paddingVertical: 16,
-    paddingHorizontal: 64,
-    borderRadius: 16,
+    backgroundColor: "#3E3E3E",
+    opacity: 0.7,
+    paddingVertical: 11,
+    width: 152,
+    borderRadius: 5,
+    alignSelf: "center",
   },
   buttonText: {
     alignSelf: "center",
-    fontSize: 32,
+    fontSize: 15,
     fontWeight: "500",
     color: "#FFF",
   },

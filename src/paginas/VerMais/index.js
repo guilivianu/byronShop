@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, SafeAreaView, StyleSheet } from "react-native";
 
-export default function Perfil() {
+export default function VerMais() {
   return (
     <SafeAreaView style={styles.box}>
       <Text style={styles.title}>Tela de categorias</Text>

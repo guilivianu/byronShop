@@ -13,7 +13,7 @@ export default function CardProduto({ nome, preco, fotos }) {
         />
         <TouchableOpacity>
           <Image
-            source={require("../../../../../../assets/botaoAdd.png")}
+            source={require("../../../../../assets/botaoAdd.png")}
             style={styles.botaoAdd}
           />
         </TouchableOpacity>
@@ -29,7 +29,7 @@ export default function CardProduto({ nome, preco, fotos }) {
 const styles = StyleSheet.create({
   productBox: {
     marginTop: 10,
-    marginLeft: 20,
+    marginHorizontal: 16,
     gap: 10,
     width: 110,
   },

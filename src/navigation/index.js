@@ -9,7 +9,8 @@ import Login from "../paginas/Login";
 import Cadastro from "../paginas/Cadastro";
 import Carrinho from "../paginas/Carrinho";
 import Perfil from "../paginas/Perfil";
-import Categoria from "../paginas/Categoria";
+import VerMais from "../paginas/VerMais";
+import Categorias from "../paginas/home/Categorias";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,7 +69,8 @@ export default function Navigation() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Carrinho" component={Carrinho} />
-        <Stack.Screen name="Categoria" component={Categoria} />
+        <Stack.Screen name="VerMais" component={VerMais} />
+        <Stack.Screen name="Categorias" component={Categorias} />
         <Stack.Screen name="Tab" component={TabRoutes} />
       </Stack.Navigator>
     </NavigationContainer>

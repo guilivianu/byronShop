@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Image, TextInput, ScrollView, View } from "react-native";
 
-import Categorias from "./Categorias/Carousel";
+import Categorias from "./Categorias";
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <ScrollView style={{ backgroundColor: "#FFF", height: "100%" }}>
       <Image
@@ -17,10 +17,10 @@ export default function Home() {
         style={styles.input}
       />
 
-      <View style={{ marginBottom: 48 }}>
-        <Categorias />
-        <Categorias />
-        <Categorias />
+      <View style={{ marginBottom: 32 }}>
+        <Categorias navigation={navigation} />
+        <Categorias navigation={navigation} />
+        <Categorias navigation={navigation} />
       </View>
     </ScrollView>
   );
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     height: 400,
     alignSelf: "center",
     position: "relative",
+    marginBottom: 48,
   },
   input: {
     position: "absolute",

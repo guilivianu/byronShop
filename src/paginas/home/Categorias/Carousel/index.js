@@ -1,42 +1,30 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import Carousel from "./Carousel";
+import React, { useState, useEffect } from "react";
+import { FlatList } from "react-native";
+import CardProduto from "./CardProduto";
 
-const Categorias = ({ navigation }) => {
+import { buscaProdutos } from "../../../../servicos/requisicoes/buscaProdutos";
+
+const Carousel = (data) => {
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    async function pegarProdutos() {
+      const resultado = await buscaProdutos();
+      setProdutos(resultado);
+      console.log(resultado.data[0].fotos[0].url);
+    }
+    pegarProdutos();
+  }, []);
+
   return (
-    <View>
-      <View style={styles.headerBox}>
-        <Text style={styles.title}>Tênis</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text>Ver mais</Text>
-        </TouchableOpacity>
-      </View>
-      <Carousel />
-    </View>
+    <FlatList
+      data={produtos.data}
+      keyExtractor={({ nome }) => nome}
+      renderItem={({ item }) => <CardProduto {...item} />}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    ></FlatList>
   );
 };
 
-export default Categorias;
-
-const styles = StyleSheet.create({
-  //  contentContainer: { paddingLeft: 56, paddingRight: 56, paddingTop: 60, gap: 32,},
-  title: {
-    fontSize: 28,
-    fontWeight: "500",
-  },
-  button: {
-    alignSelf: "flex-end",
-  },
-  headerBox: {
-    padding: 8,
-    marginTop: 50,
-    marginHorizontal: 20,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 10,
-  },
-});
+export default Carousel;
