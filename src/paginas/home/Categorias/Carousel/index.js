@@ -2,12 +2,15 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Carousel from "./Carousel";
 
-const Categorias = () => {
+const Categorias = ({ navigation }) => {
   return (
     <View>
       <View style={styles.headerBox}>
         <Text style={styles.title}>Tênis</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Login")}
+        >
           <Text>Ver mais</Text>
         </TouchableOpacity>
       </View>

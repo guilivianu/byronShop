@@ -5,7 +5,7 @@ import Categorias from "./Categorias/Carousel";
 
 export default function Home() {
   return (
-    <ScrollView style={{ height: "100%" }}>
+    <ScrollView style={{ backgroundColor: "#FFF", height: "100%" }}>
       <Image
         source={require("../../assets/img-fundo.png")}
         style={styles.bgImage}

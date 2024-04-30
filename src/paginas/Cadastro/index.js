@@ -16,18 +16,19 @@ export default function Cadastro() {
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
 
-  async function criar() {
+  async function criar({ navigation }) {
     const resultado = await criarConta(nome, email, cpf, senha);
 
     if (resultado === "sucesso") {
       Alert.alert("Conta criada!");
+      navigation.goBack();
     } else {
       Alert.alert("Erro", "Houve um problema ao cadastrar o usuário.");
     }
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#FFF", height: "100%" }}>
       <View style={styles.box}>
         <Text style={styles.title}>Cadastro</Text>
         <View style={styles.inputBox}>

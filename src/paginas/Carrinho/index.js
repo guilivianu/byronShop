@@ -13,7 +13,7 @@ import { useProdutos } from "../../servicos/requisicoes/useProdutos";
 export default function Carrinho() {
   const listaProdutos = useProdutos();
   return (
-    <SafeAreaView style={{ gap: 35 }}>
+    <SafeAreaView style={{ gap: 35, backgroundColor: "#FFF", height: "100%" }}>
       <View style={styles.view}>
         <Text style={styles.title}>Runner Shop</Text>
         <TouchableOpacity>
@@ -47,5 +47,6 @@ const styles = StyleSheet.create({
   },
   flatList: {
     alignSelf: "center",
+    backgroundColor: "#FFF",
   },
 });

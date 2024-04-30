@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#FFF", height: "100%" }}>
       <View style={styles.box}>
         <Text style={styles.title}>Runner Shop</Text>
         <View style={styles.inputBox}>
@@ -32,7 +32,7 @@ export default function Login() {
 
       <View style={styles.footerBox}>
         <Text style={styles.footerText}>Não tem uma conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
           <Text style={styles.footerButton}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>
