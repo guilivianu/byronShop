@@ -10,20 +10,20 @@ import {
 } from "react-native";
 import { criarConta } from "../../servicos/requisicoes/buscaProdutos";
 
-export default function Cadastro() {
+export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
 
-  async function criar({ navigation }) {
+  async function criar() {
     const resultado = await criarConta(nome, email, cpf, senha);
 
     if (resultado === "sucesso") {
       Alert.alert("Conta criada!");
       navigation.goBack();
     } else {
-      Alert.alert("Erro", "Houve um problema ao cadastrar o usuário.");
+      Alert.alert("Erro", resultado);
     }
   }
 

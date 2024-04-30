@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -6,9 +6,25 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
+  Alert,
 } from "react-native";
+import { entrarConta } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Login({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  async function logar() {
+    const resultado = await entrarConta(email, senha);
+
+    if (resultado === "sucesso") {
+      Alert.alert("Login realizado com sucesso!");
+      navigation.goBack();
+    } else {
+      Alert.alert("Erro", resultado);
+    }
+  }
+
   return (
     <SafeAreaView style={{ backgroundColor: "#FFF", height: "100%" }}>
       <View style={styles.box}>
@@ -18,14 +34,18 @@ export default function Login({ navigation }) {
             placeholder="E-mail"
             autoCapitalize="none"
             style={styles.input}
+            value={email}
+            onChangeText={setEmail}
           />
           <TextInput
             placeholder="Senha"
             autoCapitalize="none"
             style={styles.input}
+            value={senha}
+            onChangeText={setSenha}
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={logar}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>

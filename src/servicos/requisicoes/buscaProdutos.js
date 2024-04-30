@@ -25,7 +25,25 @@ export async function criarConta(nome, email, cpf, senha) {
     return "sucesso";
   } catch (error) {
     // console.error(error);
-    // console.error(error.response.data);
-    return error;
+    // console.error(error.response.data.msg)
+    return error.response.data.msg;
+  }
+}
+
+export async function entrarConta(email, senha) {
+  try {
+    const response = await api.post(
+      "http://capacitacao.byronsolutions.com:3000/usuarios/login",
+      {
+        email,
+        senha,
+      }
+    );
+    console.log(response.data);
+    return "sucesso";
+  } catch (error) {
+    // console.error(error);
+    // console.error(error.response.data.msg)
+    return error.response.data.msg;
   }
 }
