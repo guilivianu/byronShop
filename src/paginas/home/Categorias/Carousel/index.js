@@ -11,7 +11,6 @@ const Carousel = (data) => {
     async function pegarProdutos() {
       const resultado = await buscaProdutos();
       setProdutos(resultado);
-      console.log(resultado.data[0].fotos[0].url);
     }
     pegarProdutos();
   }, []);

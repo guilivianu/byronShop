@@ -62,7 +62,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Tab"
+        initialRouteName="Login"
         screenOptions={{ headerTitle: "", headerShown: false }}
       >
         <Stack.Screen name="Home" component={Home} />

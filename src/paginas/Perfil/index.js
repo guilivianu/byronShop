@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   SafeAreaView,
@@ -7,8 +7,20 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { buscaUsuarios } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Perfil({ navigation }) {
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    async function pegarUsuarios() {
+      const resultado = await buscaUsuarios();
+      setUsuarios(resultado);
+      console.log(resultado);
+    }
+    pegarUsuarios();
+  }, []);
+
   return (
     <SafeAreaView style={styles.box}>
       {/* Img Perfil */}

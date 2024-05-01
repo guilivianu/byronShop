@@ -17,9 +17,9 @@ export default function Login({ navigation }) {
   async function logar() {
     const resultado = await entrarConta(email, senha);
 
-    if (resultado === "sucesso") {
-      Alert.alert("Login realizado com sucesso!");
-      navigation.goBack();
+    if (resultado.msg === "Login realizado com sucesso") {
+      Alert.alert(resultado.msg);
+      navigation.navigate("Tab");
     } else {
       Alert.alert("Erro", resultado);
     }
