@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { procurarUser } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Perfil({ navigation }) {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -21,7 +21,8 @@ export default function Perfil({ navigation }) {
       const token = await AsyncStorage.getItem("TOKEN");
       const response = await procurarUser(token);
       console.log(response.data.data.nome);
-      setUsuario(response.data.data);
+      let user = response.data.data;
+      setUsuario(user);
     };
 
     getUser();
@@ -43,13 +44,13 @@ export default function Perfil({ navigation }) {
         {/* Nome */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Nome</Text>
-          <Text style={styles.info}>{usuario.nome}</Text>
+          <Text style={styles.info}>teste</Text>
         </View>
 
         {/* Email */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Email</Text>
-          <Text style={styles.info}>{usuario.email}</Text>
+          <Text style={styles.info}>camargo_andre@gmail.com</Text>
         </View>
 
         {/* Senha */}
@@ -58,9 +59,9 @@ export default function Perfil({ navigation }) {
           <Text style={styles.info}>**************</Text>
         </View>
 
-        {/* <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Adicionar produtos</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

@@ -28,7 +28,7 @@ export default function Carrinho() {
     pegarProdutos();
   }, []);
 
-  console.log(produtos[0].produto);
+  console.log(produtos[0]);
 
   const listaProdutos = useProdutos();
   return (
