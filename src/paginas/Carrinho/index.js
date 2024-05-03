@@ -28,9 +28,10 @@ export default function Carrinho() {
     pegarProdutos();
   }, []);
 
-  console.log(produtos[0]);
+  let listaProdutos = produtos.map((produto) => produto.produto);
 
-  const listaProdutos = useProdutos();
+  console.log(listaProdutos[0].fotos[0].url);
+
   return (
     <SafeAreaView style={{ gap: 35, backgroundColor: "#FFF", height: "100%" }}>
       <View style={styles.view}>
@@ -40,9 +41,8 @@ export default function Carrinho() {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={produtos}
-        keyExtractor={({ nome }) => nome}
-        renderItem={({ item }) => <CardItem {...item} />}
+        data={listaProdutos}
+        renderItem={({ item, index }) => <CardItem {...item} />}
         showsHorizontalScrollIndicator={false}
         style={styles.flatList}
       ></FlatList>

@@ -44,13 +44,13 @@ export default function Perfil({ navigation }) {
         {/* Nome */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Nome</Text>
-          <Text style={styles.info}>teste</Text>
+          <Text style={styles.info}>{usuario.nome}</Text>
         </View>
 
         {/* Email */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Email</Text>
-          <Text style={styles.info}>camargo_andre@gmail.com</Text>
+          <Text style={styles.info}>{usuario.email}</Text>
         </View>
 
         {/* Senha */}

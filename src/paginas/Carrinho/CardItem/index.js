@@ -1,11 +1,18 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import produtos from "../../../servicos/produtos";
 
-export default function CardItem({ nome, preco, foto }) {
+export default function CardItem({ nome, preco, fotos }) {
+  console.log(fotos[0].url);
   return (
     <View style={styles.productBox}>
       <View style={styles.boxImg}>
-        <Image source={foto} style={styles.image} />
+        <Image
+          source={{
+            uri: `http://capacitacao.byronsolutions.com:3000${fotos[0].url}`,
+          }}
+          style={styles.image}
+        />
       </View>
       <View style={styles.boxInfo}>
         <Text style={styles.info}>{nome}</Text>
