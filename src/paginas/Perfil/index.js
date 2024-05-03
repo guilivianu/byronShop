@@ -7,18 +7,24 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { buscaUsuarios } from "../../servicos/requisicoes/buscaProdutos";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { procurarUser } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Perfil({ navigation }) {
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
-    async function pegarUsuarios() {
-      const resultado = await buscaUsuarios();
-      setUsuarios(resultado);
-      console.log(resultado);
-    }
-    pegarUsuarios();
+    const getUser = async () => {
+      console.log(
+        "--------------------------------------------------------------------------------------------------------------------"
+      );
+      const token = await AsyncStorage.getItem("TOKEN");
+      const response = await procurarUser(token);
+      console.log(response.data.data.nome);
+      setUsuario(response.data.data);
+    };
+
+    getUser();
   }, []);
 
   return (
@@ -29,7 +35,7 @@ export default function Perfil({ navigation }) {
           source={require("../../assets/foto-perfil.jpg")}
           style={styles.image}
         />
-        <Text style={styles.name}>Olá, André</Text>
+        <Text style={styles.name}>Olá, {usuario.nome}</Text>
       </View>
 
       {/* Infos */}
@@ -37,13 +43,13 @@ export default function Perfil({ navigation }) {
         {/* Nome */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Nome</Text>
-          <Text style={styles.info}>André Camargo</Text>
+          <Text style={styles.info}>{usuario.nome}</Text>
         </View>
 
         {/* Email */}
         <View style={styles.infoBox}>
           <Text style={styles.title}>Email</Text>
-          <Text style={styles.info}>camargo_andre@gmail.com</Text>
+          <Text style={styles.info}>{usuario.email}</Text>
         </View>
 
         {/* Senha */}
@@ -52,9 +58,9 @@ export default function Perfil({ navigation }) {
           <Text style={styles.info}>**************</Text>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        {/* <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Adicionar produtos</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );

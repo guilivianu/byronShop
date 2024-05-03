@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,10 +7,29 @@ import {
   SafeAreaView,
   FlatList,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import CardItem from "./CardItem";
 import { useProdutos } from "../../servicos/requisicoes/useProdutos";
+import { procurarCarrinho } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Carrinho() {
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    async function pegarProdutos() {
+      console.log("-----------------------------------------");
+      const token = await AsyncStorage.getItem("TOKEN");
+      console.log("teste");
+      const resultado = await procurarCarrinho(token);
+      // console.log(resultado.data[0].produto.nome);
+      setProdutos(resultado.data);
+    }
+    pegarProdutos();
+  }, []);
+
+  console.log(produtos[0].produto);
+
   const listaProdutos = useProdutos();
   return (
     <SafeAreaView style={{ gap: 35, backgroundColor: "#FFF", height: "100%" }}>
@@ -21,7 +40,7 @@ export default function Carrinho() {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={listaProdutos}
+        data={produtos}
         keyExtractor={({ nome }) => nome}
         renderItem={({ item }) => <CardItem {...item} />}
         showsHorizontalScrollIndicator={false}

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function CardProduto({ nome, preco, fotos }) {
+export default function CardProduto({ nome, preco, fotos, id }) {
   return (
     <View style={styles.productBox}>
       <View style={styles.boxImg}>

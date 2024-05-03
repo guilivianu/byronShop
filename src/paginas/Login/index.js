@@ -8,17 +8,30 @@ import {
   View,
   Alert,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { entrarConta } from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  // console.log(email);
+
+  const storeUserEmail = async (token) => {
+    try {
+      await AsyncStorage.setItem("TOKEN", token);
+    } catch (e) {
+      // saving error
+    }
+  };
+
   async function logar() {
     const resultado = await entrarConta(email, senha);
 
     if (resultado.msg === "Login realizado com sucesso") {
       Alert.alert(resultado.msg);
+      storeUserEmail(resultado.token);
       navigation.navigate("Tab");
     } else {
       Alert.alert("Erro", resultado);
@@ -53,7 +66,9 @@ export default function Login({ navigation }) {
 
       <View style={styles.footerBox}>
         <Text style={styles.footerText}>Não tem uma conta?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Cadastro", { navigation })}
+        >
           <Text style={styles.footerButton}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>

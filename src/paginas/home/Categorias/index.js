@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Carousel from "./Carousel";
 
 const Categorias = ({ navigation, categoria }) => {
-  console.log(categoria);
+  // console.log(categoria);
   return (
     <View>
       <View style={styles.headerBox}>
