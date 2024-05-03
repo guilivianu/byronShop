@@ -10,6 +10,16 @@ export async function buscaProdutos() {
   }
 }
 
+export async function buscaProdutosCategoria(categoria) {
+  try {
+    const resultado = await api.get(`/produtos?categoria=${categoria}`);
+    return resultado.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 export async function criarConta(nome, email, cpf, senha) {
   try {
     const response = await api.post(
@@ -39,7 +49,7 @@ export async function entrarConta(email, senha) {
         senha,
       }
     );
-    console.log(response.data);
+    console.log(response.data.msg);
     return response.data;
   } catch (error) {
     // console.error(error);

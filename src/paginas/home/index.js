@@ -17,10 +17,10 @@ export default function Home({ navigation }) {
         style={styles.input}
       />
 
-      <View style={{ marginBottom: 32 }}>
-        <Categorias navigation={navigation} />
-        <Categorias navigation={navigation} />
-        <Categorias navigation={navigation} />
+      <View style={{ marginBottom: 32, paddingHorizontal: 16, gap: 16 }}>
+        <Categorias navigation={navigation} categoria={"Esporte"} />
+        <Categorias navigation={navigation} categoria={"Casual"} />
+        <Categorias navigation={navigation} categoria={"Corrida"} />
       </View>
     </ScrollView>
   );

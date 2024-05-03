@@ -43,6 +43,7 @@ export default function Login({ navigation }) {
             style={styles.input}
             value={senha}
             onChangeText={setSenha}
+            secureTextEntry
           />
         </View>
         <TouchableOpacity style={styles.button} onPress={logar}>

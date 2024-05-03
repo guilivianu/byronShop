@@ -28,18 +28,22 @@ export default function CardProduto({ nome, preco, fotos }) {
 
 const styles = StyleSheet.create({
   productBox: {
-    marginTop: 10,
-    marginHorizontal: 16,
+    margin: 10,
+    marginHorizontal: 8,
     gap: 10,
     width: 110,
   },
   boxImg: {
     backgroundColor: "#F8F8F8",
+    width: 110,
+    height: 110,
+    justifyContent: "center",
     borderRadius: 8,
   },
   image: {
-    width: 110,
-    height: 110,
+    width: 100,
+    height: 100,
+    alignSelf: "center",
     borderRadius: 8,
   },
   botaoAdd: {

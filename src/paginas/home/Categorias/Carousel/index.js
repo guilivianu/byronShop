@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
 import CardProduto from "./CardProduto";
 
-import { buscaProdutos } from "../../../../servicos/requisicoes/buscaProdutos";
+import { buscaProdutosCategoria } from "../../../../servicos/requisicoes/buscaProdutos";
 
-const Carousel = (data) => {
+const Carousel = (categoria) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     async function pegarProdutos() {
-      const resultado = await buscaProdutos();
+      const resultado = await buscaProdutosCategoria(categoria.categoria);
       setProdutos(resultado);
     }
     pegarProdutos();
@@ -22,6 +22,7 @@ const Carousel = (data) => {
       renderItem={({ item }) => <CardProduto {...item} />}
       horizontal
       showsHorizontalScrollIndicator={false}
+      style={{ overflow: "visible" }}
     ></FlatList>
   );
 };

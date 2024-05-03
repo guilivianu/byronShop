@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Carousel from "./Carousel";
 
-const Categorias = ({ navigation }) => {
+const Categorias = ({ navigation, categoria }) => {
+  console.log(categoria);
   return (
     <View>
       <View style={styles.headerBox}>
-        <Text style={styles.title}>Tênis</Text>
+        <Text style={styles.title}>{categoria}</Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate("VerMais")}
+          onPress={() => navigation.navigate("VerMais", { categoria })}
           style={styles.button}
         >
           <Text>Ver mais</Text>
         </TouchableOpacity>
       </View>
-      <Carousel />
+      <Carousel categoria={categoria} />
     </View>
   );
 };
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     padding: 8,
-    marginHorizontal: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
