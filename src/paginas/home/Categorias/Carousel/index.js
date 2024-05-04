@@ -18,7 +18,7 @@ const Carousel = (categoria) => {
   return (
     <FlatList
       data={produtos.data}
-      keyExtractor={({ nome }) => nome}
+      keyExtractor={({ id }) => id}
       renderItem={({ item }) => <CardProduto {...item} />}
       horizontal
       showsHorizontalScrollIndicator={false}

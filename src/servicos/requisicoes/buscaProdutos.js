@@ -70,11 +70,33 @@ export async function adicionarAoCarrinho(token, produtoId) {
         },
       }
     );
-    // console.log(response.data);
-    // console.log(response.status);
+    console.log(response.data);
+    console.log(response.status);
+    return "sucesso";
   } catch (error) {
     // console.log(error.response.data.msg);
     // console.log(error.response.status);
+  }
+}
+
+export async function removerDoCarrinho(token, produtoId) {
+  try {
+    const response = await api.delete(
+      "http://capacitacao.byronsolutions.com:3000/carrinho/remover/" +
+        produtoId,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+    console.log(response.status);
+    return "sucesso";
+  } catch (error) {
+    console.log(error.response.data.msg);
+    console.log(error.response.status);
+    return error.response.data.msg;
   }
 }
 

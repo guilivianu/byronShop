@@ -1,7 +1,30 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import { adicionarAoCarrinho } from "../../../../../servicos/requisicoes/buscaProdutos";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CardProduto({ nome, preco, fotos, id }) {
+  // console.log(id);
+  // console.log("-----");
+
+  async function adicionar() {
+    const token = await AsyncStorage.getItem("TOKEN");
+    console.log("Token: ", token);
+    const resultado = await adicionarAoCarrinho(token, id);
+    if (resultado === "sucesso") {
+      Alert.alert("Produto adicionado!");
+    } else {
+      Alert.alert("Erro", resultado);
+    }
+  }
+
   return (
     <View style={styles.productBox}>
       <View style={styles.boxImg}>
@@ -11,7 +34,7 @@ export default function CardProduto({ nome, preco, fotos, id }) {
           }}
           style={styles.image}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={adicionar}>
           <Image
             source={require("../../../../../assets/botaoAdd.png")}
             style={styles.botaoAdd}
