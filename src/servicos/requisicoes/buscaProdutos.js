@@ -58,6 +58,46 @@ export async function entrarConta(email, senha) {
   }
 }
 
+export async function procurarUser(token) {
+  console.log(token);
+  try {
+    const response = await api.get(
+      "http://capacitacao.byronsolutions.com:3000/usuarios/account/",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+    console.log(response.status);
+    return response;
+  } catch (error) {
+    console.log(error.response.data.msg);
+    console.log(error.response.status);
+  }
+}
+
+export async function procurarCarrinho(token) {
+  console.log(token);
+  try {
+    const response = await api.get(
+      "http://capacitacao.byronsolutions.com:3000/carrinho",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    // console.log(response.data);
+    // console.log(response.status);
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data.msg);
+    console.log(error.response.status);
+  }
+}
+
 export async function adicionarAoCarrinho(token, produtoId) {
   try {
     const response = await api.post(
@@ -100,11 +140,11 @@ export async function removerDoCarrinho(token, produtoId) {
   }
 }
 
-export async function procurarUser(token) {
-  console.log(token);
+export async function finalizarDoCarrinho(token) {
   try {
-    const response = await api.get(
-      "http://capacitacao.byronsolutions.com:3000/usuarios/account/",
+    const response = await api.post(
+      "http://capacitacao.byronsolutions.com:3000/carrinho/finalizar",
+      {},
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -113,29 +153,10 @@ export async function procurarUser(token) {
     );
     console.log(response.data);
     console.log(response.status);
-    return response;
+    return "sucesso";
   } catch (error) {
     console.log(error.response.data.msg);
     console.log(error.response.status);
-  }
-}
-
-export async function procurarCarrinho(token) {
-  console.log(token);
-  try {
-    const response = await api.get(
-      "http://capacitacao.byronsolutions.com:3000/carrinho",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    // console.log(response.data);
-    // console.log(response.status);
-    return response.data;
-  } catch (error) {
-    console.log(error.response.data.msg);
-    console.log(error.response.status);
+    return error.response.data.msg;
   }
 }

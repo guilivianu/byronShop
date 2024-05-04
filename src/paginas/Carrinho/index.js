@@ -6,11 +6,15 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import CardItem from "./CardItem";
-import { procurarCarrinho } from "../../servicos/requisicoes/buscaProdutos";
+import {
+  procurarCarrinho,
+  finalizarDoCarrinho,
+} from "../../servicos/requisicoes/buscaProdutos";
 
 export default function Carrinho({ navigation }) {
   const [produtos, setProdutos] = useState([]);
@@ -27,7 +31,21 @@ export default function Carrinho({ navigation }) {
 
   let listaProdutos = produtos.map((produto) => produto.produto);
 
-  console.log("Carrinho:", listaProdutos[0]);
+  async function finalizar() {
+    const token = await AsyncStorage.getItem("TOKEN");
+    console.log("Token: ", token);
+
+    const resultado = await finalizarDoCarrinho(token);
+    console.log("teste");
+    if (resultado === "sucesso") {
+      Alert.alert("Compra finalizada!");
+      navigation.replace("Tab");
+    } else {
+      Alert.alert("Erro", resultado);
+    }
+  }
+
+  // console.log("Carrinho:", listaProdutos[0]);
 
   return (
     <SafeAreaView style={{ gap: 35, backgroundColor: "#FFF", height: "100%" }}>
@@ -52,7 +70,7 @@ export default function Carrinho({ navigation }) {
             showsVerticalScrollIndicator={false}
             style={styles.flatList}
           ></FlatList>
-          <TouchableOpacity style={styles.boxEnd}>
+          <TouchableOpacity style={styles.boxEnd} onPress={finalizar}>
             <Text style={styles.textEnd}>Finalizar compra</Text>
           </TouchableOpacity>
         </View>

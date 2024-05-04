@@ -59,9 +59,9 @@ export default function Perfil({ navigation }) {
           <Text style={styles.info}>**************</Text>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        {/* <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Adicionar produtos</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );
